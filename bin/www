@@ -18,7 +18,7 @@ const constants = require('../utils/const');
   const config = await configLogic.getJsonStore();
 
   if(! await configLogic.isUmbrelBitcoinConfUpToDate(config)) {
-    console.log('umbrel-bitcoin.conf is not up to date, generating new config...');
+    console.log('umbrel-litecoin.conf is not up to date, generating new config...');
 
     // set torProxyForClearnet to false for pre-advanced-settings installs that are just now getting advanced settings
     if (constants.BITCOIN_INITIALIZE_WITH_CLEARNET_OVER_TOR) config.torProxyForClearnet = true;
@@ -145,11 +145,11 @@ async function onListening() {
 // Determines the settings.json directory based on the network
 function getSettingsDir(network) {
   if (network === 'main') {
-    return '/bitcoin/.bitcoin';
+    return '/litecoin/.litecoin';
   } else if (network === 'test') {
-    return '/bitcoin/.bitcoin/testnet3';
+    return '/litecoin/.litecoin/testnet4';
   } else {
-    return `/bitcoin/.bitcoin/${network}`;
+    return `/litecoin/.litecoin/${network}`;
   }
 }
 

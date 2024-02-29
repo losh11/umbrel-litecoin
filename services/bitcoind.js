@@ -2,7 +2,7 @@ const RpcClient = require('bitcoind-rpc');
 const camelizeKeys = require('camelize-keys');
 const BitcoindError = require('models/errors.js').BitcoindError;
 
-const BITCOIND_RPC_PORT = process.env.RPC_PORT || 8332; // eslint-disable-line no-magic-numbers, max-len
+const BITCOIND_RPC_PORT = process.env.RPC_PORT || 9332; // eslint-disable-line no-magic-numbers, max-len
 const BITCOIND_HOST = process.env.BITCOIN_HOST || '127.0.0.1';
 const BITCOIND_RPC_USER = process.env.RPC_USER;
 const BITCOIND_RPC_PASSWORD = process.env.RPC_PASSWORD;

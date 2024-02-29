@@ -1,25 +1,25 @@
 version: "3.7"
 
 services:
-  bitcoind:
+  litecoind:
     image: lncm/bitcoind:v22.0@sha256:37a1adb29b3abc9f972f0d981f45e41e5fca2e22816a023faa9fdc0084aa4507
     volumes:
-      - ${PWD}/bitcoin:/data/.bitcoin
+      - ${PWD}/litecoin:/data/.litecoin
     restart: on-failure
     stop_grace_period: 15m30s
     ports:
-      - "18443:18443"
-      # - "8333:8333" # "$BITCOIN_P2P_PORT:$BITCOIN_P2P_PORT"
+      - "19443:19443"
+      # - "9333:9333" # "$BITCOIN_P2P_PORT:$BITCOIN_P2P_PORT"
   server:
     build: .
-    depends_on: [bitcoind]
+    depends_on: [litecoind]
     command: ["npm", "start"]
     restart: on-failure
     ports:
       - "3005:3005"
     environment:
       PORT: "3005"
-      BITCOIN_HOST: "bitcoind"
+      BITCOIN_HOST: "litecoind"
       RPC_PORT: $BITCOIN_RPC_PORT
       RPC_USER: $BITCOIN_RPC_USER
       RPC_PASSWORD: $BITCOIN_RPC_PASS

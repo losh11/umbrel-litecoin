@@ -1,7 +1,7 @@
 {
-  "name": "umbrel-middleware",
+  "name": "umbrel-middleware-ltc",
   "version": "0.5.0",
-  "description": "Middleware for Umbrel Node",
+  "description": "Middleware for Umbrel Node Litecoin",
   "author": "Umbrel",
   "scripts": {
     "lint": "eslint",

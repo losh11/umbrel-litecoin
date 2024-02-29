@@ -62,7 +62,7 @@ function getMostValidatedIP(peerInfo) {
       const semi = peer.addrlocal.lastIndexOf(':');
       const externalIP = peer.addrlocal.substr(0, semi);
 
-      // Ignore localhost, this is incorrect data from bitcoind
+      // Ignore localhost, this is incorrect data from litecoind
       if (externalIP !== '127.0.0.1' || externalIP !== '0.0.0.0') {
 
         // Increment the count for this external ip

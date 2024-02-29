@@ -292,7 +292,7 @@ async function restartBitcoindWithRetries(MAX_TRIES = 60) {
       break;
     } catch (error) {
       console.error(error);
-      console.log(`Failed to stop bitcoind. Retrying in 1 second. (Try ${tries + 1} of ${MAX_TRIES})`);
+      console.log(`Failed to stop litecoind. Retrying in 1 second. (Try ${tries + 1} of ${MAX_TRIES})`);
       tries++;
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }

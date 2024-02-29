@@ -19,9 +19,9 @@
             </svg>
             <small v-if="isBitcoinCoreOperational" class="ml-1 text-success">Running</small>
             <small v-else class="ml-1 text-warning">Starting</small>
-            <h3 class="d-block font-weight-bold mb-1">Bitcoin Node</h3>
+            <h3 class="d-block font-weight-bold mb-1">Litecoin Node</h3>
             <span class="d-block text-muted">{{
-              version ? `Bitcoin Core ${version}` : "..."
+              version ? `Litecoin Core ${version}` : "..."
             }}</span>
           </div>
         </div>
@@ -76,12 +76,12 @@
           </b-dropdown>
         </div>
       </div>
-      <b-alert :show="showReindexCompleteAlert" variant="warning">Reindexing is now complete. Turn off "Reindex blockchain" in <span class="open-settings" @click="() => $bvModal.show('advanced-settings-modal')">advanced settings</span> to prevent reindexing every time Bitcoin Node restarts.</b-alert>
+      <b-alert :show="showReindexCompleteAlert" variant="warning">Reindexing is now complete. Turn off "Reindex blockchain" in <span class="open-settings" @click="() => $bvModal.show('advanced-settings-modal')">advanced settings</span> to prevent reindexing every time Litecoin Node restarts.</b-alert>
 
     <b-alert :show="showReindexInProgressAlert" variant="info">Reindexing in progress...</b-alert>
 
     <b-alert :show="showRestartError" variant="danger" dismissible @dismissed="showRestartError=false">
-      Something went wrong while attempting to change the configuration of Bitcoin Node.
+      Something went wrong while attempting to change the configuration of Litecoin Node.
     </b-alert>
     </div>
 

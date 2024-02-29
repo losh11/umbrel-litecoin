@@ -75,32 +75,32 @@ async function updateJsonStore(newProps) {
   return diskService.writeJsonFile(constants.JSON_STORE_FILE, merge(jsonStore, newProps));
 }
 
-// creates umbrel-bitcoin.conf
+// creates umbrel-litecoin.conf
 function generateUmbrelBitcoinConfig(settings) {
   const confString = settingsToMultilineConfString(settings);
   return diskService.writePlainTextFile(constants.UMBREL_BITCOIN_CONF_FILEPATH, confString);
 }
 
-// creates bitcoin.conf with includeconf=umbrel-bitcoin.conf
+// creates litecoin.conf with includeconf=umbrel-litecoin.conf
 async function generateBitcoinConfig(shouldOverwriteExistingFile = false) {
   const baseName = path.basename(constants.UMBREL_BITCOIN_CONF_FILEPATH);
   const includeConfString = `# Load additional configuration file, relative to the data directory.\nincludeconf=${baseName}`;
 
   const fileExists = await diskService.fileExists(constants.BITCOIN_CONF_FILEPATH);
 
-  // if bitcoin.conf does not exist or should be overwritten, create it with includeconf=umbrel-bitcoin.conf
+  // if litecoin.conf does not exist or should be overwritten, create it with includeconf=umbrel-litecoin.conf
   if (!fileExists || shouldOverwriteExistingFile) {
     return await diskService.writePlainTextFile(constants.BITCOIN_CONF_FILEPATH, includeConfString);
   }
 
   const existingConfContents = await diskService.readUtf8File(constants.BITCOIN_CONF_FILEPATH);
   
-  // if bitcoin.conf exists but does not include includeconf=umbrel-bitcoin.conf, add includeconf=umbrel-bitcoin.conf to the top of the file
+  // if litecoin.conf exists but does not include includeconf=umbrel-litecoin.conf, add includeconf=umbrel-litecoin.conf to the top of the file
   if (!existingConfContents.includes(includeConfString)) {
     return await diskService.writePlainTextFile(constants.BITCOIN_CONF_FILEPATH, `${includeConfString}\n${existingConfContents}`);
   }
 
-  // do nothing if bitcoin.conf exists and contains includeconf=umbrel-bitcoin.conf
+  // do nothing if litecoin.conf exists and contains includeconf=umbrel-litecoin.conf
 }
 
 function settingsToMultilineConfString(settings) {
@@ -122,7 +122,7 @@ function settingsToMultilineConfString(settings) {
 
   // mempoolfullrbf
   if (settings.mempoolFullRbf) {
-    umbrelBitcoinConfig.push("# Allow any transaction in the mempool of Bitcoin Node to be replaced with newer versions of the same transaction that include a higher fee."); 
+    umbrelBitcoinConfig.push("# Allow any transaction in the mempool of Litecoin Node to be replaced with newer versions of the same transaction that include a higher fee."); 
     umbrelBitcoinConfig.push('mempoolfullrbf=1'); 
   }
 
@@ -270,13 +270,13 @@ function settingsToMultilineConfString(settings) {
   umbrelBitcoinConfig.push("");
   umbrelBitcoinConfig.push(`# Required to configure Tor control port properly`);
   umbrelBitcoinConfig.push(`[${settings.network}]`);
-  umbrelBitcoinConfig.push(`bind=0.0.0.0:8333`);
-  umbrelBitcoinConfig.push(`bind=${constants.BITCOIND_IP}:8334=onion`);
+  umbrelBitcoinConfig.push(`bind=0.0.0.0:9333`);
+  umbrelBitcoinConfig.push(`bind=${constants.BITCOIND_IP}:9334=onion`);
 
   return umbrelBitcoinConfig.join('\n');
 }
 
-// checks to see if umbrel-bitcoin.conf is up to date, which we use to determine if we need to regenerate the config and restart bitcoind
+// checks to see if umbrel-litecoin.conf is up to date, which we use to determine if we need to regenerate the config and restart litecoind
 async function isUmbrelBitcoinConfUpToDate(config) {
   const newUmbrelBitcoinConf = await settingsToMultilineConfString(config);
 
@@ -284,7 +284,7 @@ async function isUmbrelBitcoinConfUpToDate(config) {
     ? await diskService.readUtf8File(constants.UMBREL_BITCOIN_CONF_FILEPATH)
     : '';
 
-  // compare new config to existing umbrel-bitcoin.conf
+  // compare new config to existing umbrel-litecoin.conf
   return newUmbrelBitcoinConf === existingUmbrelBitcoinConf;
 }
 

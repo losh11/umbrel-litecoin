@@ -2,9 +2,9 @@
   <a href="https://umbrel.com">
     <img src="https://i.imgur.com/rhDWq5W.jpg" alt="Logo">
   </a>
-  <h1 align="center">Bitcoin Node for Umbrel</h1>
+  <h1 align="center">Litecoin Node for Umbrel</h1>
   <p align="center">
-    Run a Bitcoin node on your Umbrel personal server. An official app by Umbrel. Powered by Bitcoin Core.
+    Run a Litecoin node on your Umbrel personal server. Maintained by the Litecoin Foundation. Powered by Litecoin Core.
     <br />
     <a href="https://umbrel.com"><strong>umbrel.com »</strong></a>
     <br />
